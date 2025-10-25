@@ -1,0 +1,49 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.12'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'com.gorylenko.gradle-git-properties' version '2.5.3'
+}
+
+group = 'com.tonyvx.certifications'
+version = '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql:42.7.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.8"
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+springBoot {
+    buildInfo()
+}
+
+// Enable bootBuildImage task for containerization
+bootBuildImage {
+    imageName = "certifications-service:latest"
+}
+
+gitProperties {
+    keys = ['git.branch','git.commit.id.abbrev','git.commit.time']
+}
+
+test {
+    useJUnitPlatform()
+}
