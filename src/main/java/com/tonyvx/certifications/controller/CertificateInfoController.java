@@ -3,8 +3,10 @@ package com.tonyvx.certifications.controller;
 import com.tonyvx.certifications.model.CertificateInfo;
 import com.tonyvx.certifications.service.CertificateInfoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,8 +21,8 @@ public class CertificateInfoController {
     }
 
     @GetMapping
-    public List<CertificateInfo> getAll() {
-        return service.getAll();
+    public List<CertificateInfo> getAll() { 
+       return service.getAll();
     }
 
     @GetMapping("/{id}")

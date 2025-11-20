@@ -1,6 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/certifications
+    url: jdbc:postgresql://postgres:5432/app
+    hikari:
+      schema: certifications
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -11,6 +13,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  # sql:
+  #   init:
+  #     schema-locations: certifications
+# https://www.baeldung.com/spring-security-oauth-resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # authority: "theapp.read"
+          jwk-set-uri: http://keycloak.localhost:8082/realms/app/protocol/openid-connect/certs
+          issuer-uri: http://keycloak.localhost:8082/realms/app 
 
 management:
   endpoints:
@@ -25,3 +38,12 @@ info:
 
 server:
   port: 8081
+
+logging:
+  level: 
+    org:
+      springframework: 
+        security: DEBUG
+    com:
+      nimbusds:
+        jose: DEBUG    

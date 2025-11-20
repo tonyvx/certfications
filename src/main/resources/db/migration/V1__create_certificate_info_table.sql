@@ -1,4 +1,4 @@
-CREATE TABLE certificate_info (
+CREATE TABLE certifications.certificate_info (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     description TEXT,

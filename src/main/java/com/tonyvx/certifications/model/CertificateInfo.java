@@ -5,7 +5,7 @@ import java.util.UUID;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "certificate_info")
+@Table(name = "certificate_info", schema = "certifications")
 public class CertificateInfo {
     @Id
     @GeneratedValue

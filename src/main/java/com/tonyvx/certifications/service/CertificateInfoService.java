@@ -17,6 +17,7 @@ public class CertificateInfoService {
     }
 
     public List<CertificateInfo> getAll() {
+        System.out.println("Getting all certificates");
         return repository.findAll();
     }
 
